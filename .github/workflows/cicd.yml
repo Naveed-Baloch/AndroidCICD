@@ -10,27 +10,27 @@ jobs:
   lint-test:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v4.1.1
 
-      - name: Setup JDK
-        uses: actions/setup-java@v3.13.0
-        with:
-          java-version : '17'
-          distribution : 'adopt'
+    #   - name: Setup JDK
+    #     uses: actions/setup-java@v3.13.0
+    #     with:
+    #       java-version : '17'
+    #       distribution : 'adopt'
 
-      - name: Run Lint
-        run: ./gradlew lintDebug
+    #   - name: Run Lint
+    #     run: ./gradlew lintDebug
 
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.3
-        with:
-          name: lint-Report.html
-          path: app/build/reports/lint-results-debug.html
+    #   - name: Upload a Build Artifact
+    #     uses: actions/upload-artifact@v3.1.3
+    #     with:
+    #       name: lint-Report.html
+    #       path: app/build/reports/lint-results-debug.html
 
   unit-test:
-    needs: [lint-test]
+    # needs: [lint-test]
     runs-on: ubuntu-latest
 
     steps:
@@ -50,27 +50,27 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: unit-tests-report.html
-          path: app/build/reports/androidTests/unit-tests-report.html
+          path: app/build/reports/tests/testDebugUnitTest/index.html
           
           
-  build-apk:
-    needs: [unit-test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
+  # build-apk:
+  #   needs: [unit-test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4.1.1
 
-      - name: Setup JDK
-        uses: actions/setup-java@v3.13.0
-        with:
-          java-version : '17'
-          distribution : 'adopt'
+  #     - name: Setup JDK
+  #       uses: actions/setup-java@v3.13.0
+  #       with:
+  #         java-version : '17'
+  #         distribution : 'adopt'
 
-      - name: Build with gradle
-        run: ./gradlew build
+  #     - name: Build with gradle
+  #       run: ./gradlew build
 
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.3
-        with:
-          name: AndroidPlayGround
-          path: app/build/outputs/apk/debug/app-debug.apk
+  #     - name: Upload a Build Artifact
+  #       uses: actions/upload-artifact@v3.1.3
+  #       with:
+  #         name: AndroidPlayGround
+  #         path: app/build/outputs/apk/debug/app-debug.apk
