@@ -28,9 +28,33 @@ jobs:
         with:
           name: lint-Report.html
           path: app/build/reports/lint-results-debug.html
+
+  unit-test:
+    needs: [lint-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version : '17'
+          distribution : 'adopt'
+
+      - name: Run Lint
+        run: ./gradlew test
+
+      - name: Upload a Unit Test Report
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: unit-tests-report.html
+          path: app/build/reports/androidTests/unit-tests-report.html
+          
           
   build-apk:
-    needs: [lint-test]
+    needs: [unit-test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
