@@ -14,6 +14,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version : '17'
+          distribution : 'adopt'
+
       - name: Run Lint
         run: ./gradlew lintDebug
 
