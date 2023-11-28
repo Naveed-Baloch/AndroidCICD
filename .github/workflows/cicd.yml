@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
 
   unit-test:
     needs: [lint-test]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -50,12 +50,12 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: unit-tests-report
-          path: app/build/reports/tests/testDebugUnitTest/index.html
+          path: app/build/reports/tests/testDebugUnitTest/
           
           
   build-apk:
     needs: [unit-test]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
