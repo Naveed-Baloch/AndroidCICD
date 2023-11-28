@@ -9,7 +9,6 @@ on:
 jobs:
   lint-test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
@@ -20,11 +19,11 @@ jobs:
           java-version : '17'
           distribution : 'adopt'
 
-      - name: Run Lint
-        run: ./gradlew test
+      - name: Build with gradle
+        run: ./gradlew build
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: lint-Report.html
-          path: app/build/outputs/apk/debug/lint-results-debug.html
+          name: AndroidPlayGround
+          path: app/build/outputs/apk/debug/app-debug.apk
