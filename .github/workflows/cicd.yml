@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  lint-test:
-    runs-on: ubuntu-latest
+  # lint-test:
+  #   runs-on: ubuntu-latest
 
     # steps:
     #   - name: Checkout
